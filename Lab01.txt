@@ -1,0 +1,81 @@
+% Hvuelo(X)echos: relación entre ciudades
+ciudad(bogota).
+ciudad(medellin).
+ciudad(cali).
+ciudad(cartagena).
+ciudad(manizales).
+ciudad(barranquilla).
+ciudad(pasto).
+ciudad(monteria).
+
+% Hechos: vuelos directos
+vuelo(bogota, medellin).
+vuelo(medellin, cartagena).
+vuelo(cali, bogota).
+vuelo(bogota, cartagena).
+vuelo(manizales, cartagena).
+vuelo(medellin, barranquilla).
+vuelo(pasto, bogota).
+vuelo(bogota, pasto).
+
+
+
+%vuelo(bobogta,medellin)
+%vuelo(bogota,X)
+%vuelo(X, medellin)
+%vuelo(X,cali)
+
+conexion_escala(A, B):-vuelo(A, X),vuelo(X, B). 
+%true
+conexion_escala(bogota, barranquilla).
+%true
+
+conexion_escala (cali, X).
+%medellin
+
+viaje(A, B):- vuelo(A, B), viaje(A, B). 
+viaje(A, B):- vuelo(A,X), vuelo(X, B). 
+%true 
+
+destinos(A, B):- vuelo(A, B). 
+%medellin 
+
+perro(firulais).
+perro(bruno).
+perro(max).
+gato(misu).
+gato(luna).
+gato(chanel).
+gato(orion).
+ave(piolin).
+
+dueno(ana, firulais).
+dueno(ana, misu).
+dueno(luis, luna).
+dueno(luis, orion).
+dueno(luis, firulais).
+dueno(maria, piolin).
+dueno(julia, chanel).
+dueno(pedro, bruno). 
+
+tiene_perro(Persona):-dueno(Persona, Mascota),perro(Mascota).
+%tiene_perro(Persona)
+%ana
+%luis
+%pedro 
+tiene_gato(Persona):-dueno(Persona, Mascota), gato(Mascota).
+%tiene_gato(Persona)
+%ana
+%luis 
+%julia 
+%multiples_mascotas(Persona) :-dueno(Persona, Mascota1), dueno(Persona, Mascota1). Mascota1/=Mascota2
+%multiples_mascotas(Personas)
+%ana
+%luis
+
+amante_animales(Persona):- tiene_perro(Persona),tiene_gato(Persona).
+%amante_animales(Persona).
+%ana
+%luis
+
+mascota_compartida(persona 
